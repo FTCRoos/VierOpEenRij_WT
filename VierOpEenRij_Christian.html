@@ -1,94 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vier op een Rij</title>
 
     <script>
-        function place(element){
+        var player = 1;
+        function place(element) {
             console.log(element.dataset.x);
-            element.style.backgroundColor="black";
-            element.dataset.placed="true";
+            if (element.dataset.placed != true) {
+                if (player == 1) {
+                    element.style.backgroundColor = "yellow";
+                    player = 2;
+                } else {
+                    element.style.backgroundColor = "red";
+                    player = 1;
+                }
+            }
+            element.dataset.placed = "true";
             console.log(element.dataset.placed);
         }
 
 
-        </script>
+    </script>
     <style>
-        td{
-            border:1px solid red;
-            width:30px;
-            height:30px;
-	    }
-    
-        td:hover{
-           border:1px solid green;
-           background-color:burlywood;
-	    }
-    
+        td {
+            border: 1px solid red;
+            width: 30px;
+            height: 30px;
+        }
 
-
-
+        td:hover {
+            border: 1px solid green;
+            background-color: burlywood;
+        }
     </style>
 </head>
+
 <body>
     <table>
-            <tr>
-                <td data-x=1 onclick="place(this)"></td>
-                <td data-x=2 onclick="place(this)"></td>
-                <td data-x=3 onclick="place(this)"></td>
-                <td data-x=4 onclick="place(this)"></td>
-                <td data-x=5 onclick="place(this)"></td>
-                <td data-x=6 onclick="place(this)"></td>
-                <td data-x=7 onclick="place(this)"></td>
-            </tr>
-            <tr>
-                <td data-x=1 onclick="place(this)"></td>
-                <td data-x=2 onclick="place(this)"></td>
-                <td data-x=3 onclick="place(this)"></td>
-                <td data-x=4 onclick="place(this)"></td>
-                <td data-x=5 onclick="place(this)"></td>
-                <td data-x=6 onclick="place(this)"></td>
-                <td data-x=7 onclick="place(this)"></td>
-            </tr>
-            <tr>
-                <td data-x=1 onclick="place(this)"></td>
-                <td data-x=2 onclick="place(this)"></td>
-                <td data-x=3 onclick="place(this)"></td>
-                <td data-x=4 onclick="place(this)"></td>
-                <td data-x=5 onclick="place(this)"></td>
-                <td data-x=6 onclick="place(this)"></td>
-                <td data-x=7 onclick="place(this)"></td>
-            </tr>
-            <tr>
-                <td data-x=1 onclick="place(this)"></td>
-                <td data-x=2 onclick="place(this)"></td>
-                <td data-x=3 onclick="place(this)"></td>
-                <td data-x=4 onclick="place(this)"></td>
-                <td data-x=5 onclick="place(this)"></td>
-                <td data-x=6 onclick="place(this)"></td>
-                <td data-x=7 onclick="place(this)"></td>
-            </tr>
-            <tr>
-                <td data-x=1 onclick="place(this)"></td>
-                <td data-x=2 onclick="place(this)"></td>
-                <td data-x=3 onclick="place(this)"></td>
-                <td data-x=4 onclick="place(this)"></td>
-                <td data-x=5 onclick="place(this)"></td>
-                <td data-x=6 onclick="place(this)"></td>
-                <td data-x=7 onclick="place(this)"></td>
-            </tr>
-            <tr>
-                <td data-x=1 onclick="place(this)"></td>
-                <td data-x=2 onclick="place(this)"></td>
-                <td data-x=3 onclick="place(this)"></td>
-                <td data-x=4 onclick="place(this)"></td>
-                <td data-x=5 onclick="place(this)"></td>
-                <td data-x=6 onclick="place(this)"></td>
-                <td data-x=7 onclick="place(this)"></td>
-            </tr>
+        <tr>
+            <td data-x=1 onclick="place(this)"></td>
+            <td data-x=2 onclick="place(this)"></td>
+            <td data-x=3 onclick="place(this)"></td>
+            <td data-x=4 onclick="place(this)"></td>
+            <td data-x=5 onclick="place(this)"></td>
+            <td data-x=6 onclick="place(this)"></td>
+            <td data-x=7 onclick="place(this)"></td>
+        </tr>
+        <tr>
+            <td data-x=1 onclick="place(this)"></td>
+            <td data-x=2 onclick="place(this)"></td>
+            <td data-x=3 onclick="place(this)"></td>
+            <td data-x=4 onclick="place(this)"></td>
+            <td data-x=5 onclick="place(this)"></td>
+            <td data-x=6 onclick="place(this)"></td>
+            <td data-x=7 onclick="place(this)"></td>
+        </tr>
+        <tr>
+            <td data-x=1 onclick="place(this)"></td>
+            <td data-x=2 onclick="place(this)"></td>
+            <td data-x=3 onclick="place(this)"></td>
+            <td data-x=4 onclick="place(this)"></td>
+            <td data-x=5 onclick="place(this)"></td>
+            <td data-x=6 onclick="place(this)"></td>
+            <td data-x=7 onclick="place(this)"></td>
+        </tr>
+        <tr>
+            <td data-x=1 onclick="place(this)"></td>
+            <td data-x=2 onclick="place(this)"></td>
+            <td data-x=3 onclick="place(this)"></td>
+            <td data-x=4 onclick="place(this)"></td>
+            <td data-x=5 onclick="place(this)"></td>
+            <td data-x=6 onclick="place(this)"></td>
+            <td data-x=7 onclick="place(this)"></td>
+        </tr>
+        <tr>
+            <td data-x=1 onclick="place(this)"></td>
+            <td data-x=2 onclick="place(this)"></td>
+            <td data-x=3 onclick="place(this)"></td>
+            <td data-x=4 onclick="place(this)"></td>
+            <td data-x=5 onclick="place(this)"></td>
+            <td data-x=6 onclick="place(this)"></td>
+            <td data-x=7 onclick="place(this)"></td>
+        </tr>
+        <tr>
+            <td data-x=1 onclick="place(this)"></td>
+            <td data-x=2 onclick="place(this)"></td>
+            <td data-x=3 onclick="place(this)"></td>
+            <td data-x=4 onclick="place(this)"></td>
+            <td data-x=5 onclick="place(this)"></td>
+            <td data-x=6 onclick="place(this)"></td>
+            <td data-x=7 onclick="place(this)"></td>
+        </tr>
 
     </table>
 </body>
+
 </html>
