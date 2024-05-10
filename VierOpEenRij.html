@@ -6,6 +6,39 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
     <script>
+        let redFlag = true;
+        document.addEventListener("DOMContentLoaded", function(){
+            const playerForm = document.getElementById("players");
+            const startButton = document.getElementById("startButton");
+            const game = document.getElementById("game");
+
+            playerForm.addEventListener("submit", function(event){
+                event.preventDefault();
+                startGame();
+            })
+        })
+
+        function switchColors(){
+            if(redFlag){
+                redFlag = false;
+                return "red";
+            } else {
+                redFlag = true;
+                return "yellow";
+            }
+        }
+
+        function startGame(){
+            const player1 = document.getElementById("player1").value;
+            const player2 = document.getElementById("player2").value;
+
+            if(player1.trim() == "" || player2.trim() == ""){
+                alert("Vul allebei de speler name in!");
+            } else{
+                gameTable.style.display = "block";
+            }
+        }
+
         function changeColor(column){
             const table = document.querySelector("table");
             const rows = table.rows;
@@ -20,37 +53,34 @@
             }
 
             if(lowestBox){
-                lowestBox.style.backgroundColor = "red";
+                lowestBox.style.backgroundColor = switchColors();
             }
         }
-        /*
-        document.addEventListener("DOMContentLoaded", function(){
-            const tds = document.querySelectorAll("td");
-            tds.forEach(td => {
-                td.addEventListener("mouseover", function(){
-                    td.style.backgroundColor = "red";
-                });
-
-                td.addEventListener("mouseout", function(){
-                    td.style.backgroundColor = "white";
-                });
-            });
-        });*/
     </script>
 
 </head>
 <body>
     <div class="container">
-        <table>
+        <form id="players">
+            <label for="player1">Speler 1(Rood) = </label>
+            <input type="text" id="player1" required><br><br>
+            <label for="player2">Speler 2(Geel) = </label>
+            <input type="text" id="player2" required><br><br>
+            <button type="submit" id="startButton">Start 4 op een Rij</button>
+        </form>
+    </div>
+
+    <div id="gameTable" style="display: none;"> 
+        <table id="table">
             <tbody>
                 <tr>
-                    <td onclick="changeColor(0)" data-clicked="false"></td>
-                    <td onclick="changeColor(1)" data-clicked="false"></td>
-                    <td onclick="changeColor(2)" data-clicked="false"></td>
-                    <td onclick="changeColor(3)" data-clicked="false"></td>
-                    <td onclick="changeColor(4)" data-clicked="false"></td>
-                    <td onclick="changeColor(5)" data-clicked="false"></td>
-                    <td onclick="changeColor(6)" data-clicked="false"></td>
+                    <td onclick="changeColor(0)"></td>
+                    <td onclick="changeColor(1)"></td>
+                    <td onclick="changeColor(2)"></td>
+                    <td onclick="changeColor(3)"></td>
+                    <td onclick="changeColor(4)"></td>
+                    <td onclick="changeColor(5)"></td>
+                    <td onclick="changeColor(6)"></td>
                 </tr>
                 <tr>
                     <td></td>
