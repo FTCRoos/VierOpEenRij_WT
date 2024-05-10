@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            justify-content: center;
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 5px;
+        }
+
+        td {
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border: 2px solid red;
+        }
+        
+        td:hover {
+            background-color: red;
+        }
+    </style>
+    <script>
+        let redFlag = true;
+
+        document.addEventListener("DOMContentLoaded", function(){
+            const playerForm = document.getElementById("players");
+            const startButton = document.getElementById("startButton");
+            const game = document.getElementById("game");
+
+            playerForm.addEventListener("submit", function(event){
+                event.preventDefault();
+                startGame();
+            })
+        })
+
+        function startGame(){
+            const player1 = document.getElementById("player1").value;
+            const player2 = document.getElementById("player2").value;
+
+            if(player1.trim() == "" || player2.trim() == ""){
+                alert("Vul allebei de speler name in!");
+            } else{
+                gameTable.style.display = "block";
+            }
+        }
+
+        function switchColors(){
+            if(redFlag){
+                redFlag = false;
+                return "red";
+            } else {
+                redFlag = true;
+                return "yellow";
+            }
+        }
+
+        function changeColor(column){
+            const table = document.querySelector("table");
+            const rows = table.rows;
+
+            let lowestBox = null;
+            for (let i = rows.length - 1; i >= 0; i--){
+                const cell = rows[i].cells[column];
+                if(cell.style.backgroundColor == "" || cell.style.backgroundColor == "white"){
+                    lowestBox = cell;
+                    break;
+                }
+            }
+
+            if(lowestBox){
+                lowestBox.style.backgroundColor = switchColors();
+                fourHorizontal(table);
+                fourVertical(table);
+                /*fourDiagnal(table); */
+            }
+        }
+
+        function fourHorizontal(table){
+            for(let i = table.rows.length-1; i >= 0; i--){
+                const row = table.rows[i]
+                if(checkHorizontal(row)){
+                    console.log("Winner!");
+                    return true;
+                }
+            }
+            console.log("No winner yet");
+            return false;
+        }
+
+        function checkHorizontal(row){
+            for(let i = 0; i <= row.cells.length - 4; i++){
+                const cell1 = row.cells[i];
+                const cell2 = row.cells[i+1];
+                const cell3 = row.cells[i+2];
+                const cell4 = row.cells[i+3];
+
+                const color1 = cell1.style.backgroundColor;
+                const color2 = cell2.style.backgroundColor;
+                const color3 = cell3.style.backgroundColor;
+                const color4 = cell4.style.backgroundColor;
+
+                if(color1 && color1 == color2 && color2 == color3 && color3 == color4){
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Vertical nog niet klaar 
+        function fourVertical(table){
+            for(let i = table.rows.length-1; i >= 0; i--){
+                const row = table.rows[i]
+                if(checkVertical(table, row)){
+                    console.log("Winner!");
+                    return true;
+                }
+            }
+            console.log("No winner yet");
+            return false;
+        }
+
+        function checkVertical(table, row){
+            const rows = table.rows;
+
+            for(let i = 0; i <= rows.length - 4; i++){
+                const cell1 = row.cells[i];
+                const cell2 = row.cells[i+1];
+                const cell3 = row.cells[i+2];
+                const cell4 = row.cells[i+3];
+
+                const color1 = cell1.style.backgroundColor;
+                const color2 = cell2.style.backgroundColor;
+                const color3 = cell3.style.backgroundColor;
+                const color4 = cell4.style.backgroundColor;
+
+                if(color1 && color1 == color2 && color2 == color3 && color3 == color4){
+                    return true;
+                }
+            }
+            return false;
+        }
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <form id="players">
+            <label for="player1">Speler 1(Rood) = </label>
+            <input type="text" id="player1" required><br><br>
+            <label for="player2">Speler 2(Geel) = </label>
+            <input type="text" id="player2" required><br><br>
+            <button type="submit" id="startButton">Start 4 op een Rij</button>
+        </form>
+    </div>
+
+    <div id="gameTable" style="display: none;"> 
+        <table id="table">
+            <tbody>
+                <tr>
+                    <td onclick="changeColor(0)"></td>
+                    <td onclick="changeColor(1)"></td>
+                    <td onclick="changeColor(2)"></td>
+                    <td onclick="changeColor(3)"></td>
+                    <td onclick="changeColor(4)"></td>
+                    <td onclick="changeColor(5)"></td>
+                    <td onclick="changeColor(6)"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
