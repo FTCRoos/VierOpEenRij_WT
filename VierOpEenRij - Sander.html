@@ -61,23 +61,23 @@
             stringArrays.push(column.toString());
 
             let diag1 = [];
-            let inc = 1;
+            let inc = 0;
             while(ci - inc > 0 && ri - inc > 0){
                 inc++;
             }
-            while(ci - inc <= 6 && ri - inc <= 5){
+            while(ci - inc < 7 && ri - inc < 6){
                 diag1.push(tableArray[ri-inc][ci-inc]);
                 inc--;
             }
             stringArrays.push(diag1.toString());
 
             let diag2 = [];
-            inc = 1;
-            while(ci + inc <= 6 && ri + inc <= 5){
+            inc = 0;
+            while(ci - inc > 0 && ri + inc < 5){
                 inc++;
             }
-            while(ci + inc < 0 && ri + inc < 0){
-                diag2.push(tableArray[ri+inc][ci+inc]);
+            while(ci - inc < 7 && ri + inc > 0){
+                diag2.push(tableArray[ri+inc][ci-inc]);
                 inc--;
             }
             stringArrays.push(diag2.toString());
