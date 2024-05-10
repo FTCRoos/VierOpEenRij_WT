@@ -6,7 +6,36 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
     <script>
+        function changeColor(column){
+            const table = document.querySelector("table");
+            const rows = table.rows;
 
+            let lowestBox = null;
+            for (let i = rows.length - 1; i >= 0; i--){
+                const cell = rows[i].cells[column];
+                if(cell.style.backgroundColor == "" || cell.style.backgroundColor == "white"){
+                    lowestBox = cell;
+                    break;
+                }
+            }
+
+            if(lowestBox){
+                lowestBox.style.backgroundColor = "red";
+            }
+        }
+        /*
+        document.addEventListener("DOMContentLoaded", function(){
+            const tds = document.querySelectorAll("td");
+            tds.forEach(td => {
+                td.addEventListener("mouseover", function(){
+                    td.style.backgroundColor = "red";
+                });
+
+                td.addEventListener("mouseout", function(){
+                    td.style.backgroundColor = "white";
+                });
+            });
+        });*/
     </script>
 
 </head>
@@ -15,13 +44,13 @@
         <table>
             <tbody>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td onclick="changeColor(0)" data-clicked="false"></td>
+                    <td onclick="changeColor(1)" data-clicked="false"></td>
+                    <td onclick="changeColor(2)" data-clicked="false"></td>
+                    <td onclick="changeColor(3)" data-clicked="false"></td>
+                    <td onclick="changeColor(4)" data-clicked="false"></td>
+                    <td onclick="changeColor(5)" data-clicked="false"></td>
+                    <td onclick="changeColor(6)" data-clicked="false"></td>
                 </tr>
                 <tr>
                     <td></td>
