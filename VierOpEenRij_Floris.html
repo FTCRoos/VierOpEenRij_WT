@@ -20,6 +20,13 @@
     </style>
 </head>
 <body>
+    Name player number 1 <input id="invoer_name_1"><button onclick="naam1()">Submit</button>
+    Name player number 2 <input id="invoer_name_2"><button onclick="naam2()">Submit</button>
+    <div id="namePlayerOne"></div>
+    <div id="namePlayerTwo"></div>
+    <br>
+    <div id="uitvoer">Het is de beurt aan player number one</div>
+
     <div class="board">
         <table id="game-board">
             <tbody>
@@ -47,7 +54,14 @@
         </table>
     </div>
     <script>
-        
+        var naam_1 = null;
+        var naam_2 = null;
+        function naam1(){
+            document.getElementById("namePlayerOne").innerHTML = document.getElementById("invoer_name_1").value
+        }
+        function naam2(){
+            document.getElementById("namePlayerTwo").innerHTML = document.getElementById("invoer_name_2").value
+        }
         const gameBoard = document.getElementById('game-board'); // Selecteer de tabel
         // Variabele om bij te houden of een cel is geklikt
         let clickedCells = {};
@@ -95,8 +109,18 @@
                 if (highestEmptyCell) {
                     if (turn){
                         highestEmptyCell.style.backgroundColor = 'blue';
+                        if(document.getElementById("namePlayerOne").innerHTML){
+                            document.getElementById("uitvoer").innerHTML = "Het is de beurt aan " + document.getElementById("namePlayerOne").innerHTML;
+                        } else {
+                            document.getElementById("uitvoer").innerHTML = "Het is de beurt aan player number one";
+                        }
                     } else {
                         highestEmptyCell.style.backgroundColor = 'red';
+                        if(document.getElementById("namePlayerTwo").innerHTML){
+                            document.getElementById("uitvoer").innerHTML = "Het is de beurt aan " + document.getElementById("namePlayerTwo").innerHTML;
+                        } else {
+                            document.getElementById("uitvoer").innerHTML = "Het is de beurt aan player number two";
+                        }
                     }
                     clickedCells[highestEmptyCell.id] = true; // Markeer cel als geklikt
                 }
