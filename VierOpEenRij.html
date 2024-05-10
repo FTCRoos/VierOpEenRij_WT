@@ -10,63 +10,88 @@
             width: 30px;
             height: 30px;
         }
+        td:hover{
+            background-color: grey;
+        }
     </style>
+    <script>
+        let player = true;
+        function placeStone(element){
+            let mainTable = document.getElementById("mainTable");
+            let rows = mainTable.rows;
+            let ci = element.cellIndex;
+            let ri = element.parentNode.rowIndex;
+            console.log(ci +", "+ri);
+            while(ri < 5){
+                if (rows[ri+1].cells[ci].style.backgroundColor == "yellow" || rows[ri+1].cells[ci].style.backgroundColor == "red"){
+                    break
+                }
+                ri++;
+            }
+            if (player){
+                rows[ri].cells[ci].style.backgroundColor = "yellow";
+            }else{
+                rows[ri].cells[ci].style.backgroundColor = "red";
+            }
+            player = !player;
+        }
+    </script>
 </head>
 <body>
-    <table>
+    <table id="mainTable">
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
+            <td onclick="placeStone(this)"></td>
         </tr>
     </table>
 </body>
