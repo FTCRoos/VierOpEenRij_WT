@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <script>
         let redFlag = true;
+
         document.addEventListener("DOMContentLoaded", function(){
             const playerForm = document.getElementById("players");
             const startButton = document.getElementById("startButton");
@@ -18,16 +19,6 @@
             })
         })
 
-        function switchColors(){
-            if(redFlag){
-                redFlag = false;
-                return "red";
-            } else {
-                redFlag = true;
-                return "yellow";
-            }
-        }
-
         function startGame(){
             const player1 = document.getElementById("player1").value;
             const player2 = document.getElementById("player2").value;
@@ -36,6 +27,16 @@
                 alert("Vul allebei de speler name in!");
             } else{
                 gameTable.style.display = "block";
+            }
+        }
+
+        function switchColors(){
+            if(redFlag){
+                redFlag = false;
+                return "red";
+            } else {
+                redFlag = true;
+                return "yellow";
             }
         }
 
@@ -54,7 +55,75 @@
 
             if(lowestBox){
                 lowestBox.style.backgroundColor = switchColors();
+                fourHorizontal(table);
+                fourVertical(table);
+                /*fourDiagnal(table); */
             }
+        }
+
+        function fourHorizontal(table){
+            for(let i = table.rows.length-1; i >= 0; i--){
+                const row = table.rows[i]
+                if(checkHorizontal(row)){
+                    console.log("Winner!");
+                    return true;
+                }
+            }
+            console.log("No winner yet");
+            return false;
+        }
+
+        function checkHorizontal(row){
+            for(let i = 0; i <= row.cells.length - 4; i++){
+                const cell1 = row.cells[i];
+                const cell2 = row.cells[i+1];
+                const cell3 = row.cells[i+2];
+                const cell4 = row.cells[i+3];
+
+                const color1 = cell1.style.backgroundColor;
+                const color2 = cell2.style.backgroundColor;
+                const color3 = cell3.style.backgroundColor;
+                const color4 = cell4.style.backgroundColor;
+
+                if(color1 && color1 == color2 && color2 == color3 && color3 == color4){
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Vertical nog niet klaar 
+        function fourVertical(table){
+            for(let i = table.rows.length-1; i >= 0; i--){
+                const row = table.rows[i]
+                if(checkVertical(table, row)){
+                    console.log("Winner!");
+                    return true;
+                }
+            }
+            console.log("No winner yet");
+            return false;
+        }
+
+        function checkVertical(table, row){
+            const rows = table.rows;
+
+            for(let i = 0; i <= rows.length - 4; i++){
+                const cell1 = row.cells[i];
+                const cell2 = row.cells[i+1];
+                const cell3 = row.cells[i+2];
+                const cell4 = row.cells[i+3];
+
+                const color1 = cell1.style.backgroundColor;
+                const color2 = cell2.style.backgroundColor;
+                const color3 = cell3.style.backgroundColor;
+                const color4 = cell4.style.backgroundColor;
+
+                if(color1 && color1 == color2 && color2 == color3 && color3 == color4){
+                    return true;
+                }
+            }
+            return false;
         }
     </script>
 
