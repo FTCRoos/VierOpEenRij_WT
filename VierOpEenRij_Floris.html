@@ -47,9 +47,12 @@
         </table>
     </div>
     <script>
+        
         const gameBoard = document.getElementById('game-board'); // Selecteer de tabel
         // Variabele om bij te houden of een cel is geklikt
         let clickedCells = {};
+        // keep turns
+        var turn = true;
         // Voeg event listeners toe aan elke cel
         gameBoard.querySelectorAll('td').forEach((cell, index) => {
             const column = index % 7 + 1;
@@ -79,10 +82,24 @@
                 });
             });
             cell.addEventListener('click', () => {
-                // Verander de achtergrondkleur van de cel naar blauw wanneer erop wordt geklikt
-                cell.style.backgroundColor = 'blue';
-                clickedCells[cell.id] = true; // Markeer cel als geklikt
-                console.log(clickedCells);
+                turn = !turn;
+                // Vind de hoogste lege cel in dezelfde kolom
+                const colClass = cell.classList[0];
+                let highestEmptyCell = null;
+                gameBoard.querySelectorAll(`.${colClass}`).forEach(colCell => {
+                    if (!clickedCells[colCell.id]) {
+                        highestEmptyCell = colCell;
+                    }
+                });
+                // Als er een lege cel is gevonden, plaats daar de blauwe steen
+                if (highestEmptyCell) {
+                    if (turn){
+                        highestEmptyCell.style.backgroundColor = 'blue';
+                    } else {
+                        highestEmptyCell.style.backgroundColor = 'red';
+                    }
+                    clickedCells[highestEmptyCell.id] = true; // Markeer cel als geklikt
+                }
             });
         });
     </script>
