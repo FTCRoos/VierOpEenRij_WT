@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script></script>
+    <style>
+        /* Stijl voor het bord */
+        .board {
+            width: 700px; /* 7 kolommen van 100px */
+        }
+        /* Stijl voor de cellen */
+        td {
+            width: 100px;
+            height: 100px;
+            border: 2px solid red; /* Rode rand */
+            padding: 5px; /* Kleine padding */
+        }
+    </style>
+</head>
+<body>
+    <div class="board">
+        <table id="game-board">
+            <tbody>
+                <!-- 6 rijen -->
+                <tr>
+                    <!-- 7 kolommen -->
+                    <td class="col-1"></td><td class="col-2"></td><td class="col-3"></td><td class="col-4"></td><td class="col-5"></td><td class="col-6"></td><td class="col-7"></td>
+                </tr>
+                <tr>
+                    <td class="col-1"></td><td class="col-2"></td><td class="col-3"></td><td class="col-4"></td><td class="col-5"></td><td class="col-6"></td><td class="col-7"></td>
+                </tr>
+                <tr>
+                    <td class="col-1"></td><td class="col-2"></td><td class="col-3"></td><td class="col-4"></td><td class="col-5"></td><td class="col-6"></td><td class="col-7"></td>
+                </tr>
+                <tr>
+                    <td class="col-1"></td><td class="col-2"></td><td class="col-3"></td><td class="col-4"></td><td class="col-5"></td><td class="col-6"></td><td class="col-7"></td>
+                </tr>
+                <tr>
+                    <td class="col-1"></td><td class="col-2"></td><td class="col-3"></td><td class="col-4"></td><td class="col-5"></td><td class="col-6"></td><td class="col-7"></td>
+                </tr>
+                <tr>
+                    <td class="col-1"></td><td class="col-2"></td><td class="col-3"></td><td class="col-4"></td><td class="col-5"></td><td class="col-6"></td><td class="col-7"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        const gameBoard = document.getElementById('game-board'); // Selecteer de tabel
+        // Variabele om bij te houden of een cel is geklikt
+        let clickedCells = {};
+        // Voeg event listeners toe aan elke cel
+        gameBoard.querySelectorAll('td').forEach((cell, index) => {
+            const column = index % 7 + 1;
+            cell.id = `cell-${column}-${Math.floor(index / 7) + 1}`;
+            cell.addEventListener('mouseover', () => {
+                // Haal de klasse van de kolom van de cel op
+                const colClass = cell.classList[0];
+                // Selecteer alle cellen in dezelfde kolom en voeg de klasse toe om de kolom lichtgeel te maken
+                gameBoard.querySelectorAll(`.${colClass}`).forEach(colCell => {
+                    if (!clickedCells[colCell.id]) { // Controleer of cel is geklikt
+                        colCell.style.backgroundColor = 'lightyellow';
+                    }
+                });
+                // Verander de achtergrondkleur van de cel naar geel
+                if (!clickedCells[cell.id]) { // Controleer of cel is geklikt
+                    cell.style.backgroundColor = 'yellow';
+                }
+            });
+            cell.addEventListener('mouseout', () => {
+                // Haal de klasse van de kolom van de cel op
+                const colClass = cell.classList[0];
+                // Selecteer alle cellen in dezelfde kolom en verwijder de klasse om de kolom lichtgeel te maken
+                gameBoard.querySelectorAll(`.${colClass}`).forEach(colCell => {
+                    if (!clickedCells[colCell.id]) { // Controleer of cel is geklikt
+                        colCell.style.backgroundColor = '';
+                    }
+                });
+            });
+            cell.addEventListener('click', () => {
+                // Verander de achtergrondkleur van de cel naar blauw wanneer erop wordt geklikt
+                cell.style.backgroundColor = 'blue';
+                clickedCells[cell.id] = true; // Markeer cel als geklikt
+                console.log(clickedCells);
+            });
+        });
+    </script>
+</body>
+</html>
